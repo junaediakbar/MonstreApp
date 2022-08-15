@@ -6,4 +6,8 @@
     <string name="history">History</string>
     <string name="profile">Profile</string>
     <string name="notification">Notification</string>
+    <string name="image_success">Success Image</string>
+    <string name="sucess_message">DEVICE ARE PAIRED</string>
+    <string name="success_message">Click this tab to continue</string>
+    <string name="add_device">ADDING NEW DEVICES</string>
 </resources>

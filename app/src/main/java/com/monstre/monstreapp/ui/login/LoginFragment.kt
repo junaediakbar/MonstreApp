@@ -24,12 +24,21 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.tvSignup?.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_loginFragment_to_registerFragment,
-                null,
-                null
-            )
+        binding?.apply{
+            tvSignup.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_loginFragment_to_registerFragment,
+                    null,
+                    null
+                )
+            }
+            btnLogin.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_nav_login_to_deviceFragment,
+                    null,
+                    null
+                )
+            }
         }
     }
 

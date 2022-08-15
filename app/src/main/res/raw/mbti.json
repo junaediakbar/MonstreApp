@@ -1,0 +1,274 @@
+{
+  "intj": {
+    "alt": { "en": "architect", "id": "arsitek" },
+    "role": { "en": "analysts", "id": "analis" },
+    "desc": {
+      "en": "Imaginative and strategic thinkers, with a plan for everything.",
+      "id": "Pemikir yang imajinatif dan strategis, dengan rencana untuk segala sesuatunya."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/INTJ-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/INTJ-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/intj-architect.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/intj-architect-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Architect_INTJ_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Architect_INTJ_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Architect_INTJ_weaknesses.svg"
+  },
+  "intp": {
+    "alt": { "en": "logician", "id": "ahli logika" },
+    "role": { "en": "analysts", "id": "analis" },
+    "desc": {
+      "en": "Innovative inventors with an unquenchable thirst for knowledge.",
+      "id": "Penemu yang inovatif dengan kedahagaan akan pengetahuan yang tidak ada habisnya."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/INTP-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/INTP-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/intp-logician.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/intp-logician-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Logician_INTP_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Logician_INTP_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Logician_INTP_weaknesses.svg"
+  },
+  "entj": {
+    "alt": { "en": "commander", "id": "komandan" },
+    "role": { "en": "analysts", "id": "analis" },
+    "desc": {
+      "en": "Bold, imaginative and strong-willed leaders, always finding a way – or making one.",
+      "id": "Pemimpin yang pemberani, imaginatif dan berkemauan kuat, selalu menemukan cara - atau menciptakan cara."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ENTJ-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ENTJ-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/entj-commander.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/entj-commander-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Commander_ENTJ_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Commander_ENTJ_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Commander_ENTJ_weaknesses.svg"
+  },
+  "entp": {
+    "alt": { "en": "debater", "id": "pendebat" },
+    "role": { "en": "analysts", "id": "analis" },
+    "desc": {
+      "en": "Smart and curious thinkers who cannot resist an intellectual challenge.",
+      "id": "Pemikir yang cerdas dan serius yang gatal terhadap tantangan intelektual."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ENTP-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ENTP-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/entp-debater.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/entp-debater-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Debater_ENTP_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Debater_ENTP_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/analysts_Debater_ENTP_weaknesses.svg"
+  },
+  "infj": {
+    "alt": { "en": "advocate", "id": "advokat" },
+    "role": { "en": "diplomats", "id": "diplomat" },
+    "desc": {
+      "en": "Quiet and mystical, yet very inspiring and tireless idealists.",
+      "id": "Pendiam dan mistis, tetapi idealis yang sangat menginspirasi dan tak kenal lelah."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/INFJ-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/INFJ-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/infj-advocate.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/infj-advocate-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Advocate_INFJ_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Advocate_INFJ_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Advocate_INFJ_weaknesses.svg"
+  },
+  "infp": {
+    "alt": { "en": "mediator", "id": "mediator" },
+    "role": { "en": "diplomats", "id": "diplomat" },
+    "desc": {
+      "en": "Poetic, kind and altruistic people, always eager to help a good cause.",
+      "id": "Orang yang puitis, baik hati dan altruisik, selalu ingin membantu aksi kebaikan."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/INFP-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/INFP-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/infp-mediator.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/infp-mediator-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Mediator_INFP_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Mediator_INFP_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Mediator_INFP_weaknesses.svg"
+  },
+  "enfj": {
+    "alt": { "en": "protagonist", "id": "protagonis" },
+    "role": { "en": "diplomats", "id": "diplomat" },
+    "desc": {
+      "en": "Charismatic and inspiring leaders, able to mesmerize their listeners.",
+      "id": "Pemimpin yang karismatik dan menginspirasi, mampu memukai pendengarnya."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ENFJ-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ENFJ-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/enfj-protagonist.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/enfj-protagonist-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Protagonist_ENFJ_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Protagonist_ENFJ_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Protagonist_ENFJ_weaknesses.svg"
+  },
+  "enfp": {
+    "alt": { "en": "campaigner", "id": "juru kampanye" },
+    "role": { "en": "diplomats", "id": "diplomat" },
+    "desc": {
+      "en": "Enthusiastic, creative and sociable free spirits, who can always find a reason to smile.",
+      "id": "Semangat yang antusias, kreatif dan bebas bergaul, yang selalu dapat menemukan alasan untuk tersenyum."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ENFP-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ENFP-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/enfp-campaigner.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/enfp-campaigner-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Campaigner_ENFP_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Campaigner_ENFP_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/diplomats_Campaigner_ENFP_weaknesses.svg"
+  },
+  "istj": {
+    "alt": { "en": "logistician", "id": "ahli logistik" },
+    "role": { "en": "sentinels", "id": "pengawal" },
+    "desc": {
+      "en": "Practical and fact-minded individuals, whose reliability cannot be doubted.",
+      "id": "Individu yang praktis dan mengutamakan fakta, yang keandalannya tidak dapat diragukan."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ISTJ-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ISTJ-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/istj-logistician.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/istj-logistician-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Logistician_ISTJ_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Logistician_ISTJ_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Logistician_ISTJ_weaknesses.svg"
+  },
+  "isfj": {
+    "alt": { "en": "defender", "id": "pembela" },
+    "role": { "en": "sentinels", "id": "pengawal" },
+    "desc": {
+      "en": "Very dedicated and warm protectors, always ready to defend their loved ones.",
+      "id": "Pelindung yang sangat berdedikasi dan hangat, selalu siap membela orang yang dicintainya."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ISFJ-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ISFJ-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/isfj-defender.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/isfj-defender-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Defender_ISFJ_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Defender_ISFJ_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Defender_ISFJ_weaknesses.svg"
+  },
+  "estj": {
+    "alt": { "en": "executive", "id": "eksekutif" },
+    "role": { "en": "sentinels", "id": "pengawal" },
+    "desc": {
+      "en": "Excellent administrators, unsurpassed at managing things – or people.",
+      "id": "Administrator istimewa, tidak ada duanya dalam mengelola sesuatu - atau orang."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ESTJ-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ESTJ-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/estj-executive.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/estj-executive-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Executive_ESTJ_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Executive_ESTJ_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Executive_ESTJ_weaknesses.svg"
+  },
+  "esfj": {
+    "alt": { "en": "consul", "id": "konsul" },
+    "role": { "en": "sentinels", "id": "pengawal" },
+    "desc": {
+      "en": "Extraordinarily caring, social and popular people, always eager to help.",
+      "id": "Orang yang sangat peduli, sosial dan populer, selalu ingin membantu."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ESFJ-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ESFJ-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/esfj-consul.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/esfj-consul-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Consul_ESFJ_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Consul_ESFJ_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/sentinels_Consul_ESFJ_weaknesses.svg"
+  },
+  "istp": {
+    "alt": { "en": "virtuoso", "id": "virtuoso" },
+    "role": { "en": "explorers", "id": "penjelajah" },
+    "desc": {
+      "en": "Bold and practical experimenters, masters of all kinds of tools.",
+      "id": "Eksperimenter yang pemberani dan praktis, menguasai semua jenis alat."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ISTP-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ISTP-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/istp-virtuoso.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/istp-virtuoso-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Virtuoso_ISTP_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Virtuoso_ISTP_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Virtuoso_ISTP_weaknesses.svg"
+  },
+  "isfp": {
+    "alt": { "en": "adventurer", "id": "petualang" },
+    "role": { "en": "explorers", "id": "penjelajah" },
+    "desc": {
+      "en": "Flexible and charming artists, always ready to explore and experience something new.",
+      "id": "Seniman yang fleksibel dan mengagumkan, selalu siap menjelajahi dan mengalami hal baru."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ISFP-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ISFP-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/isfp-adventurer.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/isfp-adventurer-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Adventurer_ISFP_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Adventurer_ISFP_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Adventurer_ISFP_weaknesses.svg"
+  },
+  "estp": {
+    "alt": { "en": "entrepreneur", "id": "pengusaha" },
+    "role": { "en": "explorers", "id": "penjelajah" },
+    "desc": {
+      "en": "Smart, energetic and very perceptive people, who truly enjoy living on the edge.",
+      "id": "Orang yang cerdas, bersemangan dan sangat tanggap, yang benar-benar menikmati hidup yang menantang."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ESTP-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ESTP-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/estp-entrepreneur.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/estp-entrepreneur-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Entrepreneur_ESTP_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Entrepreneur_ESTP_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Entrepreneur_ESTP_weaknesses.svg"
+  },
+  "esfp": {
+    "alt": { "en": "entertainer", "id": "penghibur" },
+    "role": { "en": "explorers", "id": "penjelajah" },
+    "desc": {
+      "en": "Spontaneous, energetic and enthusiastic people – life is never boring around them.",
+      "id": "Orang yang spontan, bersemangan dan antusias - hidup tidak akan membosankan saat berdekatan dengan mereka."
+    },
+    "avatar": {
+      "male": "https://storage.googleapis.com/neris/public/images/types/faces/ESFP-male.svg",
+      "female": "https://storage.googleapis.com/neris/public/images/types/faces/ESFP-female.svg"
+    },
+    "img": "https://storage.googleapis.com/neris/public/images/types/esfp-entertainer.svg",
+    "wallpaper": "https://storage.googleapis.com/neris/public/images/headers/esfp-entertainer-personality-header.svg",
+    "introductions": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Entertainer_ESFP_introduction.svg",
+    "strengths": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Entertainer_ESFP_strengths.svg",
+    "weaknesses": "https://storage.googleapis.com/neris/public/images/types/scenes/explorers_Entertainer_ESFP_weaknesses.svg"
+  }
+}
