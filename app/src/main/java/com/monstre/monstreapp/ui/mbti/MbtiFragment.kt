@@ -14,11 +14,13 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.monstre.monstreapp.R
 import com.monstre.monstreapp.data.local.preference.SharedPreference
 import com.monstre.monstreapp.databinding.FragmentMbtiBinding
 import com.monstre.monstreapp.domain.Mbti
 import com.monstre.monstreapp.ui.ViewModelFactory
 import com.monstre.monstreapp.ui.adapter.MbtiAdapter
+import com.monstre.monstreapp.utils.MarginItemDecoration
 import com.monstre.monstreapp.utils.mbtiList
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -46,11 +48,12 @@ class MbtiFragment : Fragment() {
 
         binding?.apply {
             rvMbtiList.apply {
-                setHasFixedSize(true)
                 layoutManager = setLayoutManager
-
                 adapter = MbtiAdapter(mbtiList)
-            }
+            }.addItemDecoration(
+                MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.recylerViewMargin),2)
+            )
+
         }
     }
 
