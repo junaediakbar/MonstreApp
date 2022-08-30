@@ -1,4 +1,4 @@
-package com.monstre.monstreapp.domain
+package com.monstre.monstreapp.domain.model
 
 data class User(
     val user: String,

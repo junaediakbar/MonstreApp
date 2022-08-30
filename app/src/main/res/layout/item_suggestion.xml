@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
+        android:layout_width="10dp"
 
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Relax your mind with  favourite music"
+        android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintStart_toEndOf="@+id/iv_suggestion"
@@ -44,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:text="Details"
-        android:textSize="12sp"
+        android:textSize="8sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"

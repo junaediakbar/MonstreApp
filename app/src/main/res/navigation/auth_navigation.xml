@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation"
+    app:startDestination="@id/nav_login">
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.monstre.monstreapp.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/nav_signup" />
+        <action
+            android:id="@+id/action_nav_login_to_deviceFragment"
+            app:destination="@id/nav_device" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_signup"
+        android:name="com.monstre.monstreapp.ui.signup.SignUpFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_nav_signup_to_deviceFragment"
+            app:destination="@id/nav_device" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_device"
+        android:name="com.monstre.monstreapp.ui.device.DeviceFragment"
+        android:label="fragment_device"
+        tools:layout="@layout/fragment_device" >
+        <action
+            android:id="@+id/action_nav_device_to_mbtiFragment"
+            app:destination="@id/nav_mbti" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_mbti"
+        android:name="com.monstre.monstreapp.ui.mbti.MbtiFragment"
+        android:label="fragment_mbti"
+        tools:layout="@layout/fragment_mbti" >
+    </fragment>
+</navigation>

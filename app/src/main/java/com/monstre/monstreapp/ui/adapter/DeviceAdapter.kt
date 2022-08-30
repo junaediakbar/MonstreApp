@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.monstre.monstreapp.databinding.ItemDeviceBinding
-import com.monstre.monstreapp.domain.Device
+import com.monstre.monstreapp.domain.model.Device
 
 class DeviceAdapter(private val deviceList: ArrayList<Device>) : RecyclerView.Adapter<DeviceAdapter.DeviceHolder>() {
 

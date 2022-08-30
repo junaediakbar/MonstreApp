@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.monstre.monstreapp.domain.User
+import com.monstre.monstreapp.domain.model.User
 import kotlinx.coroutines.flow.map
 
 class SharedPreference private constructor(private val dataStore: DataStore<Preferences>) {

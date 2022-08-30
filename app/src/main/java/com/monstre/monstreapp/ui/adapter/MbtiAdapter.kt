@@ -2,15 +2,12 @@ package com.monstre.monstreapp.ui.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.monstre.monstreapp.R
 import com.monstre.monstreapp.databinding.ItemMbtiBinding
-import com.monstre.monstreapp.domain.Mbti
+import com.monstre.monstreapp.domain.model.Mbti
 import com.monstre.monstreapp.utils.loadSvg
 
 
@@ -48,7 +45,7 @@ class MbtiAdapter(
     }
 
     @SuppressLint("ResourceAsColor", "NotifyDataSetChanged")
-    private fun initialbind(mbtiData :Mbti, holder :MbtiHolder, position :Int){
+    private fun initialbind(mbtiData : Mbti, holder :MbtiHolder, position :Int){
         holder.apply {
             tvTitle.text = mbtiData.name
             imgPhoto.loadSvg(mbtiData.urlImage.toString())

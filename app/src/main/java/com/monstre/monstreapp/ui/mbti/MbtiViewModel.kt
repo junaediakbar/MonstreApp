@@ -1,12 +1,10 @@
 package com.monstre.monstreapp.ui.mbti
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
-import com.monstre.monstreapp.domain.Mbti
+import com.monstre.monstreapp.domain.model.Mbti
 import com.monstre.monstreapp.utils.mbtiList
 
 class MbtiViewModel : ViewModel() {

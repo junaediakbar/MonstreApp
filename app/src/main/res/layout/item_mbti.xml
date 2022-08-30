@@ -7,22 +7,23 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_mbti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="96dp"
+        android:layout_height="116dp"
+        android:clipToOutline="true"
+        android:transformPivotX="8dp"
         app:cardCornerRadius="20dp"
         app:cardPreventCornerOverlap="true"
-        android:clipToOutline="true"
-        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/img_mbti"
-            android:layout_width="80dp"
-            android:layout_height="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:maxHeight="160dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/img_mbti_example" />
     </androidx.cardview.widget.CardView>
 

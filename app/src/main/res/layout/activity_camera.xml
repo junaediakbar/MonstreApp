@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/blue_200"
+    android:layout_height="match_parent"
+    tools:context=".ui.camera.CameraActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_200"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_btn_back"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="@string/scanme"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_camera"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_capture_instruction">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/view_finder"
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_capture_instruction">
+
+
+        </androidx.camera.view.PreviewView>
+
+        <ImageView
+            android:id="@+id/iv_camera_frame"
+            android:layout_width="224dp"
+            android:layout_height="224dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/img_camera_frame" />
+    </androidx.cardview.widget.CardView>
+
+
+    <ImageView
+        android:id="@+id/iv_result"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/card_camera"
+        app:layout_constraintEnd_toEndOf="@+id/card_camera"
+        app:layout_constraintStart_toStartOf="@+id/card_camera"
+        app:layout_constraintTop_toTopOf="@+id/card_camera" />
+
+    <TextView
+        android:id="@+id/tv_capture_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/sf_pro_text_regular"
+        android:maxWidth="196dp"
+        android:text="Posisikan wajah Anda di dalam bingkai dan senyum :)"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/card_camera"
+        app:layout_constraintStart_toStartOf="@+id/card_camera"
+        app:layout_constraintTop_toBottomOf="@+id/card_camera" />
+
+    <TextView
+        android:id="@+id/tv_capture_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/sf_pro_text_semibold"
+        android:text="Pegang HP Anda dengan Tegak"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_retry_capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Ulangi"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="@+id/card_camera"
+        app:layout_constraintTop_toBottomOf="@+id/tv_capture_desc" />
+
+    <Button
+        android:id="@+id/btn_verified_capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iya"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/card_camera"
+        app:layout_constraintTop_toTopOf="@+id/btn_retry_capture" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_capture"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_button_white"
+        android:backgroundTint="@color/white"
+        android:fontFamily="ope"
+        android:padding="12dp"
+        android:text="Ambil Gambar"
+        android:textAllCaps="false"
+        android:textColor="@color/blue_200"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/card_camera"
+        app:layout_constraintStart_toStartOf="@+id/card_camera"
+        app:layout_constraintTop_toBottomOf="@+id/tv_capture_desc"
+        tools:fontFamily="@font/open_sans_bold" />
+
+    <Button
+        android:id="@+id/btn_next_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Lain Kali"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="@+id/card_camera"
+        app:layout_constraintTop_toBottomOf="@+id/tv_capture_desc" />
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iya"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/card_camera"
+        app:layout_constraintTop_toTopOf="@+id/btn_retry_capture" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/btns_captured"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="411dp"
+        android:visibility="invisible"
+        app:constraint_referenced_ids="btn_verified_capture,btn_retry_capture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/camera_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="card_camera,iv_camera_frame"
+        tools:ignore="NotSibling" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/btns_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:constraint_referenced_ids="btn_next_time,btn_send" />
+
+    <TextView
+        android:id="@+id/tv_capture_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sf_pro_text_medium"
+        android:text="Bantuan?"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/btn_retry_capture"
+        app:layout_constraintTop_toBottomOf="@+id/btn_capture" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

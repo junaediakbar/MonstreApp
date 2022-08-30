@@ -10,4 +10,8 @@
     <string name="sucess_message">DEVICE ARE PAIRED</string>
     <string name="success_message">Click this tab to continue</string>
     <string name="add_device">ADDING NEW DEVICES</string>
+    <string name="capture_desc">capture an image</string>
+    <string name="take_picture_fail">Something goes wrong!</string>
+    <string name="camera_fail">Failed to access camera</string>
+    <string name="scanme">Scan-me!</string>
 </resources>
