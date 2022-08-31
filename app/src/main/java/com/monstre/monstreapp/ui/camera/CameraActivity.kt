@@ -63,12 +63,15 @@ class CameraActivity : AppCompatActivity() {
         viewModel.isAlreadyTakePicture.observe(this@CameraActivity){
             binding?.apply {
                 btnsCaptured.visibility = visibility(it)
-                ivResult.visibility= visibility(it)
+                cardResult.visibility= visibility(it)
                 btnCapture.visibility = visibility(!it)
                 cameraView.visibility = visibility(!it)
                 if(it){
                     tvCaptureInstruction.text = "Foto telah berhasil diambil!"
                     tvCaptureDesc.text= "Apakah Anda yakin menggunakan foto ini?"
+                }else{
+                    tvCaptureInstruction.text = "Pegang HP Anda dengan Tegak"
+                    tvCaptureDesc.text= "Posisikan wajah Anda di dalam bingkai dan senyum :)"
                 }
 
             }

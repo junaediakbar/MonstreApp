@@ -42,19 +42,24 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_camera"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:maxWidth="366dp"
+        android:maxHeight="366dp"
         app:cardCornerRadius="20dp"
         app:cardPreventCornerOverlap="true"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_capture_instruction">
 
         <androidx.camera.view.PreviewView
             android:id="@+id/view_finder"
-            android:layout_width="256dp"
-            android:layout_height="256dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,49 +70,73 @@
 
         <ImageView
             android:id="@+id/iv_camera_frame"
-            android:layout_width="224dp"
-            android:layout_height="224dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="24dp"
             app:srcCompat="@drawable/img_camera_frame" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_result"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:maxWidth="366dp"
+        android:maxHeight="366dp"
+        android:visibility="invisible"
+        app:cardCornerRadius="20dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_capture_instruction">
+
+        <ImageView
+            android:id="@+id/iv_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/card_camera"
+            app:layout_constraintEnd_toEndOf="@+id/card_camera"
+            app:layout_constraintStart_toStartOf="@+id/card_camera"
+            app:layout_constraintTop_toTopOf="@+id/card_camera" />
     </androidx.cardview.widget.CardView>
 
 
-    <ImageView
-        android:id="@+id/iv_result"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/card_camera"
-        app:layout_constraintEnd_toEndOf="@+id/card_camera"
-        app:layout_constraintStart_toStartOf="@+id/card_camera"
-        app:layout_constraintTop_toTopOf="@+id/card_camera" />
-
     <TextView
         android:id="@+id/tv_capture_desc"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/sf_pro_text_regular"
-        android:maxWidth="196dp"
         android:text="Posisikan wajah Anda di dalam bingkai dan senyum :)"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/card_camera"
         app:layout_constraintStart_toStartOf="@+id/card_camera"
         app:layout_constraintTop_toBottomOf="@+id/card_camera" />
 
     <TextView
         android:id="@+id/tv_capture_instruction"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/sf_pro_text_semibold"
         android:text="Pegang HP Anda dengan Tegak"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/card_camera"
+        app:layout_constraintStart_toStartOf="@+id/card_camera"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -115,16 +144,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColor="@color/white"
         android:text="Ulangi"
+        android:background="@drawable/bg_button_border_white"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/card_camera"
         app:layout_constraintTop_toBottomOf="@+id/tv_capture_desc" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_verified_capture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Iya"
+        android:background="@drawable/bg_button_white"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/card_camera"
         app:layout_constraintTop_toTopOf="@+id/btn_retry_capture" />
@@ -142,25 +174,29 @@
         android:textAllCaps="false"
         android:textColor="@color/blue_200"
         android:textSize="16sp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/card_camera"
         app:layout_constraintStart_toStartOf="@+id/card_camera"
         app:layout_constraintTop_toBottomOf="@+id/tv_capture_desc"
         tools:fontFamily="@font/open_sans_bold" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_next_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@drawable/bg_button_border_white"
         android:text="Lain Kali"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/card_camera"
         app:layout_constraintTop_toBottomOf="@+id/tv_capture_desc" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_white"
         android:text="Iya"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/card_camera"
@@ -171,7 +207,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="411dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:constraint_referenced_ids="btn_verified_capture,btn_retry_capture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -180,6 +216,7 @@
         android:id="@+id/camera_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="visible"
         app:constraint_referenced_ids="card_camera,iv_camera_frame"
         tools:ignore="NotSibling" />
 
@@ -201,6 +238,13 @@
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/btn_retry_capture"
         app:layout_constraintTop_toBottomOf="@+id/btn_capture" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintDimensionRatio="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,6 +32,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:fontFamily="@font/sf_pro_text_semibold"
         android:text="Relax your mind with  favourite music"
         android:textSize="10sp"
         android:textStyle="bold"

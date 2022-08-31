@@ -39,6 +39,9 @@ class DeviceFragment : Fragment() {
                     null
                 )
             }
+            btnBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
 
         return binding?.root

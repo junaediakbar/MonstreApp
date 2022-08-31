@@ -47,9 +47,9 @@ class MbtiAdapter(
     @SuppressLint("ResourceAsColor", "NotifyDataSetChanged")
     private fun initialbind(mbtiData : Mbti, holder :MbtiHolder, position :Int){
         holder.apply {
-            tvTitle.text = mbtiData.name
+            tvTitle.text = mbtiData.name + "-A/T"
             imgPhoto.loadSvg(mbtiData.urlImage.toString())
-            cardView.setBackgroundColor(if (mbtiData.isSelected) R.color.blue_500 else Color.WHITE)
+            cardView.setBackgroundResource(if (mbtiData.isSelected) R.drawable.bg_litte_button_second else R.drawable.bg_button_white)
             itemView.setOnClickListener {
                 mbtiData.isSelected = !mbtiData.isSelected
                 //  if (mModelList.filter { it.isSelected }.isEmpty()) previousPosition = -1

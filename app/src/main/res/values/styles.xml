@@ -77,4 +77,5 @@
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
 </resources>

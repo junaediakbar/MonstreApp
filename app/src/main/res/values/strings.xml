@@ -14,4 +14,8 @@
     <string name="take_picture_fail">Something goes wrong!</string>
     <string name="camera_fail">Failed to access camera</string>
     <string name="scanme">Scan-me!</string>
+    <string name="email_validation_message">Email tidak sesuai</string>
+    <string name="password_validation_message">Password tidak benar!</string>
+    <string name="name_validation_message">Nama tidak sesuai</string>
+    <string name="add_personality">Add Personality</string>
 </resources>

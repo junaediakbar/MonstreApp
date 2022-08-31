@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@android:color/transparent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_mbti"
-        android:layout_width="96dp"
-        android:layout_height="116dp"
-        android:clipToOutline="true"
-        android:transformPivotX="8dp"
-        app:cardCornerRadius="20dp"
-        app:cardPreventCornerOverlap="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardPreventCornerOverlap="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/img_mbti"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
+            android:layout_width="112dp"
+            android:layout_height="84dp"
             android:maxHeight="160dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="42dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_mbti_example" />
+            android:src="@drawable/img_login"
+            tools:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
 
 
@@ -34,9 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp"
+        android:fontFamily="@font/sf_pro_text_bold"
         android:text="ENFP - A/T"
         android:textAllCaps="true"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/card_mbti"
         app:layout_constraintStart_toStartOf="@+id/card_mbti"
