@@ -4,9 +4,11 @@ package com.monstre.monstreapp.ui.mbti
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.monstre.monstreapp.R
+import com.monstre.monstreapp.data.Result
 import com.monstre.monstreapp.data.local.preference.SharedPreference
 import com.monstre.monstreapp.databinding.FragmentMbtiBinding
 import com.monstre.monstreapp.ui.MainActivity
@@ -42,8 +45,36 @@ class MbtiFragment : Fragment() {
 
         binding?.apply {
             btnNext.setOnClickListener {
-                val intent = Intent (requireActivity(), MainActivity::class.java)
-                startActivity(intent)
+                viewModel.user.observe(viewLifecycleOwner){user ->
+                    viewModel.selectedMbti.observe(viewLifecycleOwner){mbti ->
+                        if(user.token.isNotEmpty() && mbti!= ""){
+                            viewModel.updateMbti(user.token,mbti.uppercase()).observe(viewLifecycleOwner){ result->
+                                if (result != null) {
+                                    when (result) {
+                                        is Result.Loading -> {
+                                            showLoading(true)
+                                        }
+                                        is Result.Success -> {
+                                            showLoading(false)
+                                            val intent = Intent (requireActivity(), MainActivity::class.java)
+                                            startActivity(intent)
+                                            activity?.finish()
+                                        }
+                                        is Result.Error -> {
+                                            showLoading(false)
+                                            showMessage(getString(R.string.something_wrong))
+                                        }
+                                    }
+                                }
+                            }
+                        }else{
+                            Toast.makeText(activity, "Please input a personality", Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+
+                }
+
             }
         }
 
@@ -56,7 +87,7 @@ class MbtiFragment : Fragment() {
         binding?.apply {
             rvMbtiList.apply {
                 layoutManager = setLayoutManager
-                adapter = MbtiAdapter(mbtiList)
+                adapter = MbtiAdapter(mbtiList,viewModel)
             }.addItemDecoration(
                 MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.recylerViewMargin),2)
             )
@@ -70,4 +101,15 @@ class MbtiFragment : Fragment() {
             ViewModelFactory(SharedPreference.getInstance(pref), requireContext())
         )[MbtiViewModel::class.java]
     }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showMessage(message: String) {
+        if (message != "") {
+            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }

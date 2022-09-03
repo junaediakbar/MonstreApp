@@ -30,13 +30,54 @@ val mbtiList: ArrayList<Mbti> = arrayListOf(
 )
 
 val stressList: ArrayList<StressLevel> = arrayListOf(
-    StressLevel("Mon", 20),
-    StressLevel("Tue", 70),
-    StressLevel("Wed", 60),
-    StressLevel("Thu", 50),
-    StressLevel("Fri", 60),
-    StressLevel("Sat", 80),
-    StressLevel("Sun", 90),
+    StressLevel("Mon", 0),
+    StressLevel("Tue", 0),
+    StressLevel("Wed", 0),
+    StressLevel("Thu", 0),
+    StressLevel("Fri", 0),
+    StressLevel("Sat", 0),
+    StressLevel("Sun", 0),
+)
+
+val stressListMonth: ArrayList<StressLevel> = arrayListOf(
+    StressLevel("01", 0),
+    StressLevel("02", 0),
+    StressLevel("03", 0),
+    StressLevel("04", 0),
+    StressLevel("05", 0),
+    StressLevel("06", 0),
+    StressLevel("07", 0),
+    StressLevel("08", 0),
+    StressLevel("09", 0),
+    StressLevel("10", 0),
+    StressLevel("11", 0),
+    StressLevel("12", 0),
+    StressLevel("13", 0),
+    StressLevel("14", 0),
+    StressLevel("15", 0),
+    StressLevel("16", 0),
+    StressLevel("17", 0),
+    StressLevel("18", 0),
+    StressLevel("19", 0),
+    StressLevel("20", 0),
+    StressLevel("21", 0),
+    StressLevel("22", 0),
+    StressLevel("23", 0),
+    StressLevel("24", 0),
+    StressLevel("25", 0),
+    StressLevel("26", 0),
+    StressLevel("27", 0),
+    StressLevel("28", 0),
+    StressLevel("29", 0),
+    StressLevel("30", 0),
+    StressLevel("31", 0),
+)
+
+val stressKind: ArrayList<String> = arrayListOf(
+    "Relax",
+    "Calm",
+    "Anxious",
+    "Stressed"
 )
 
 val suggestionList: ArrayList<Suggestion> = arrayListOf(

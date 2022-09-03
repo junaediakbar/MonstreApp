@@ -22,10 +22,11 @@
         android:layout_height="64dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/bg_rounded_with_border_black"
+        android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_suggestion_dance" />
+        app:srcCompat="@drawable/ic_book" />
 
     <TextView
         android:id="@+id/tv_suggestion"
@@ -41,12 +42,12 @@
         app:layout_constraintTop_toTopOf="@+id/iv_suggestion" />
 
     <TextView
-        android:id="@+id/tv_suggestion2"
+        android:id="@+id/tv_suggesstion_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:text="Details"
-        android:textSize="8sp"
+        android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"

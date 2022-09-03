@@ -101,9 +101,9 @@
                     android:id="@+id/view"
                     style="@style/Divider.Vertical"
                     android:layout_height="32dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_mood"
-                    app:layout_constraintStart_toEndOf="@+id/tv_mood"
+                    app:layout_constraintStart_toEndOf="@+id/tv_mood_field"
                     app:layout_constraintTop_toTopOf="@+id/tv_mood" />
 
                 <TextView
@@ -179,12 +179,12 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_stress"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
 
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="48dp"
                     android:layout_marginBottom="16dp"
                     android:orientation="horizontal"
                     android:paddingTop="12dp"
@@ -202,6 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
+                    android:scrollHorizontally="true"
                     android:text="Month"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -276,6 +277,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_suggestion"
                     tools:itemCount="3"
                     tools:listitem="@layout/item_suggestion" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
@@ -426,6 +428,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="194dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
+    android:layout_marginHorizontal="32dp"
     android:background="@drawable/bg_dialog_rounded">
 
     <ImageView
@@ -18,10 +18,13 @@
         app:srcCompat="@drawable/img_success" />
 
     <TextView
-        android:id="@+id/tv_dialog_time"
+        android:id="@+id/tv_dialog_success"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/sf_pro_text_bold"
         android:paddingHorizontal="16dp"
         android:text="@string/sucess_message"
         android:textAlignment="center"
@@ -33,14 +36,16 @@
 
     <TextView
         android:id="@+id/tv_success_id"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/success_message"
+        android:layout_marginBottom="12dp"
         android:paddingHorizontal="16dp"
+        android:text="@string/success_message"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/tv_dialog_time"
-        app:layout_constraintStart_toStartOf="@+id/tv_dialog_time"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_time" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_dialog_success"
+        app:layout_constraintStart_toStartOf="@+id/tv_dialog_success"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_success" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

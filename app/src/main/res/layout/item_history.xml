@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:elevation="12dp"
+    android:outlineAmbientShadowColor="@color/grey_500"
+    app:cardCornerRadius="12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_stress_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:padding="0dp"
+            android:text="Anchious"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/iv_stress_level"
+            app:layout_constraintTop_toTopOf="@+id/iv_stress_level" />
+
+        <TextView
+            android:id="@+id/tv_stress_number"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="-12dp"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:text="lvl. 90"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_stress_level"
+            app:layout_constraintTop_toBottomOf="@+id/tv_stress_level" />
+
+        <ImageView
+            android:id="@+id/iv_stress_level"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/img_emoji_anxious"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_stress_bpm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BPM "
+            app:layout_constraintStart_toStartOf="@+id/tv_stress_bpm_number"
+            app:layout_constraintTop_toTopOf="@+id/tv_stress_level" />
+
+        <TextView
+            android:id="@+id/tv_stress_bpm_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/sf_pro_text_bold"
+            android:text="90"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_stress_bpm" />
+
+        <TextView
+            android:id="@+id/tv_stress_hr_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            android:fontFamily="@font/sf_pro_text_bold"
+            android:text="90"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_stress_hr"
+            app:layout_constraintTop_toBottomOf="@+id/tv_stress_hr" />
+
+        <TextView
+            android:id="@+id/tv_stress_hr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Heartrate"
+            app:layout_constraintEnd_toStartOf="@+id/tv_stress_bpm_number"
+            app:layout_constraintTop_toTopOf="@+id/tv_stress_level" />
+
+        <TextView
+            android:id="@+id/tv_stress_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="2022-02-21"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_stress_hr_number" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

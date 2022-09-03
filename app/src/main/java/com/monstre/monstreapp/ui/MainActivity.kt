@@ -38,7 +38,8 @@ class MainActivity : AppCompatActivity() {
                     "Tidak mendapatkan permission.",
                     Toast.LENGTH_SHORT
                 ).show()
-                finish()
+            }else{
+                startCameraX()
             }
         }
     }
@@ -66,8 +67,8 @@ class MainActivity : AppCompatActivity() {
 
         navHostFragment.navController.addOnDestinationChangedListener { _, dest, _ ->
             navView.visibility = if (
-                dest.id == R.id.nav_home|| dest.id == R.id.nav_history
-                ||  dest.id == R.id.nav_notification || dest.id == R.id.nav_profile
+                dest.id == R.id.nav_home || dest.id == R.id.nav_history
+                || dest.id == R.id.nav_notification || dest.id == R.id.nav_profile
             ) {
                 binding.fabCamera.visibility = View.VISIBLE
                 View.VISIBLE
@@ -77,15 +78,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if (!allPermissionsGranted()) {
-            ActivityCompat.requestPermissions(
-                this,
-                REQUIRED_PERMISSIONS,
-                REQUEST_CODE_PERMISSIONS
-            )
-        }
 
-        binding.fabCamera.setOnClickListener { startCameraX() }
+
+        binding.fabCamera.setOnClickListener {
+            if (!allPermissionsGranted()) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    REQUIRED_PERMISSIONS,
+                    REQUEST_CODE_PERMISSIONS
+                )
+            } else {
+                startCameraX()
+            }
+        }
 
     }
 

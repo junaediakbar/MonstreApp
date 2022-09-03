@@ -1,60 +1,94 @@
 package com.monstre.monstreapp.ui.history
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.monstre.monstreapp.R
+import com.monstre.monstreapp.data.Result
+import com.monstre.monstreapp.data.local.preference.SharedPreference
+import com.monstre.monstreapp.databinding.FragmentHistoryBinding
+import com.monstre.monstreapp.ui.ViewModelFactory
+import com.monstre.monstreapp.ui.adapter.HistoryAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HistoryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HistoryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private var binding: FragmentHistoryBinding? = null
+    private lateinit var viewModel: HistoryViewModel
+    private lateinit var pref: DataStore<Preferences>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false)
-    }
+        binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        pref = requireContext().dataStore
+        setupViewModel()
+        setBackButton()
+        val setLayoutManagerVertical =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding?.apply {
+            rvHistory.apply {
+                setHasFixedSize(true)
+                layoutManager = setLayoutManagerVertical
+                viewModel.user.observe(viewLifecycleOwner) { user ->
+                    if (user.token.isNotEmpty()) {
+                        viewModel.getFullYearHistory(user.token)
+                            .observe(viewLifecycleOwner) { result ->
+                                if (result != null) {
+                                    when (result) {
+                                        is Result.Loading -> {
+                                            showLoading(true)
+                                        }
+                                        is Result.Success -> {
+                                            showLoading(false)
+                                            adapter = HistoryAdapter(result.data.data)
+                                        }
+                                        is Result.Error -> {
+                                            showLoading(false)
+                                            showMessage(getString(R.string.something_wrong))
+                                        }
+                                    }
+                                }
+                            }
+                    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HistoryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HistoryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
                 }
             }
+
+        }
+        return binding?.root
+    }
+
+    private fun setBackButton() {
+        binding?.ivBtnBack?.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            ViewModelFactory(SharedPreference.getInstance(pref), requireContext())
+        )[HistoryViewModel::class.java]
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showMessage(message: String) {
+        if (message != "") {
+            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+        }
     }
 }

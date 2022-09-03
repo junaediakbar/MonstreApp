@@ -9,15 +9,17 @@ import com.monstre.monstreapp.domain.model.StressLevel
 
 class StressAdapter(
     private val stressList: ArrayList<StressLevel>,
+    private val badge: String
 ) :
-RecyclerView.Adapter<StressAdapter.StressHolder>() {
+    RecyclerView.Adapter<StressAdapter.StressHolder>() {
 
 
     override fun getItemCount(): Int = stressList.size
 
-    class StressHolder(itemBinding: ItemStressProgressBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+    class StressHolder(itemBinding: ItemStressProgressBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
         var tvday = itemBinding.tvStressDay
-        var progress =itemBinding.progressBar
+        var progress = itemBinding.progressBar
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StressHolder {
@@ -26,16 +28,16 @@ RecyclerView.Adapter<StressAdapter.StressHolder>() {
         return StressHolder(itemBinding)
     }
 
-    private  var previousPosition: Int = -1
+    private var previousPosition: Int = -1
 
 
     override fun onBindViewHolder(holder: StressHolder, position: Int) {
         val stressData: StressLevel = stressList[position]
-        initialbind(stressData , holder, position)
+        initialbind(stressData, holder, position)
     }
 
     @SuppressLint("ResourceAsColor", "NotifyDataSetChanged")
-    private fun initialbind(stressData : StressLevel, holder :StressHolder, position :Int){
+    private fun initialbind(stressData: StressLevel, holder: StressHolder, position: Int) {
         holder.apply {
             tvday.text = stressData.time
             progress.progress = stressData.level

@@ -1,34 +1,53 @@
 package com.monstre.monstreapp.ui.login
 
+import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Patterns
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.textfield.TextInputEditText
 import com.monstre.monstreapp.R
+import com.monstre.monstreapp.data.local.preference.SharedPreference
+import com.monstre.monstreapp.data.remote.response.LoginResponse
 import com.monstre.monstreapp.databinding.FragmentLoginBinding
+import com.monstre.monstreapp.ui.ViewModelFactory
+import com.monstre.monstreapp.data.Result
+import com.monstre.monstreapp.ui.AuthActivity
 import com.monstre.monstreapp.ui.customview.EditTextWithValidation
+
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class LoginFragment : Fragment() {
 
     private var binding: FragmentLoginBinding? = null
+    private lateinit var viewModel: LoginViewModel
+    private lateinit var pref: DataStore<Preferences>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
+        pref = requireContext().dataStore
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.apply{
+        setupViewModel()
+        setupView()
+    }
+
+    private fun setupView() {
+        binding?.apply {
             tvSignup.setOnClickListener {
                 findNavController().navigate(
                     R.id.action_loginFragment_to_registerFragment,
@@ -37,11 +56,12 @@ class LoginFragment : Fragment() {
                 )
             }
             btnLogin.setOnClickListener {
-                findNavController().navigate(
-                    R.id.action_nav_login_to_deviceFragment,
-                    null,
-                    null
-                )
+                val email = etEmail.text.toString()
+                val password = etPassword.text.toString()
+
+                viewModel.login(email, password).observe(viewLifecycleOwner) {
+                    loginObserver(it)
+                }
             }
             etEmail.setValidationCallback(object : EditTextWithValidation.InputValidation {
                 override val errorMessage: String
@@ -60,19 +80,43 @@ class LoginFragment : Fragment() {
         }
     }
 
-
-    fun TextInputEditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-        this.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    private fun loginObserver(result: Result<LoginResponse>) {
+        when (result) {
+            is Result.Loading -> {
+                showLoading(true)
             }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            is Result.Success -> {
+                findNavController().navigate(
+                    R.id.action_nav_login_to_deviceFragment,
+                    null,
+                    null
+                )
+                showLoading(false)
             }
-
-            override fun afterTextChanged(editable: Editable?) {
-                afterTextChanged.invoke(editable.toString())
+            is Result.Error -> {
+                showLoading(false)
+                showMessage(getString(R.string.something_wrong))
             }
-        })
+        }
     }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showMessage(message: String) {
+        if (message != "") {
+            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            ViewModelFactory(SharedPreference.getInstance(pref), requireContext())
+        )[LoginViewModel::class.java]
+    }
+
     companion object
 }
