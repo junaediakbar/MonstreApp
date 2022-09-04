@@ -14,7 +14,7 @@ class CameraViewModel(private val monstreRepository: MonstreRepository) : ViewMo
     val isAlreadyTakePicture: LiveData<Boolean> = _isAlreadyTakePicture
 
 
-    fun uploadImage (token : String, imageMultipart: MultipartBody.Part) = monstreRepository.updateImage("Bearer $token",imageMultipart)
+    fun uploadImage (imageMultipart: MultipartBody.Part, token : String) = monstreRepository.updateImage(imageMultipart,"Bearer $token")
     val user: LiveData<User> = monstreRepository.user.asLiveData()
 
     init {

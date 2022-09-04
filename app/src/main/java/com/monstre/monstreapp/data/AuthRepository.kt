@@ -42,13 +42,28 @@ class AuthRepository(
             try {
                 val response = apiService.signup(name, email, password)
                 emit(Result.Success(response))
+                pref.saveUser(
+                    response.data.name,
+                    response.accessToken,
+                )
             } catch (e: Exception) {
                 Log.d(TAG, "signup: ${e.message.toString()} ")
                 emit(Result.Error(e.message.toString()))
             }
         }
 
-    suspend fun logout(mbti: String) {
+    suspend fun logout() {
+        pref.saveUser(
+            "",
+            ""
+        )
+        pref.saveAvatar(
+            ""
+        )
+        pref.saveSelectedMbti(
+            ""
+        )
+        pref.saveId("")
     }
 
     fun updateMbti(token: String, mbti: String ) = liveData {

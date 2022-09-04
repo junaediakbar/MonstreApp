@@ -9,8 +9,8 @@ data class ArticleResponse(
 	@field:SerializedName("data")
 	val data: ArrayList<ArticleItem>,
 
-	@field:SerializedName("status")
-	val status: String
+	@field:SerializedName("type")
+	val type: String
 )
 @Parcelize
 data class ArticleItem(

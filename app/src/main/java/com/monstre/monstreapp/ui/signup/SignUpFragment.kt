@@ -54,11 +54,7 @@ class SignUpFragment : Fragment() {
                     signUpObserver(it)
                 }
 
-                findNavController().navigate(
-                    R.id.action_nav_signup_to_deviceFragment,
-                    null,
-                    null
-                )
+
             }
             etEmail.setValidationCallback(object : EditTextWithValidation.InputValidation {
                 override val errorMessage: String
@@ -91,7 +87,11 @@ class SignUpFragment : Fragment() {
                 showLoading(true)
             }
             is Result.Success -> {
-                findNavController().popBackStack()
+                findNavController().navigate(
+                    R.id.action_nav_signup_to_deviceFragment,
+                    null,
+                    null
+                )
                 showLoading(false)
             }
             is Result.Error -> {

@@ -21,4 +21,6 @@
     <string name="something_wrong">Something goes wrong</string>
     <string name="article">Article</string>
     <string name="disconnect_message">Disconnected device</string>
+    <string name="image_not_found">Image not found</string>
+    <string name="no_article_found">Not found article</string>
 </resources>

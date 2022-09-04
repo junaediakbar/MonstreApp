@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -15,18 +14,17 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.monstre.monstreapp.R
 import com.monstre.monstreapp.data.Result
 import com.monstre.monstreapp.data.local.preference.SharedPreference
@@ -38,10 +36,12 @@ import com.monstre.monstreapp.utils.rotateBitmap
 import com.monstre.monstreapp.utils.visibility
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
@@ -52,7 +52,7 @@ class CameraActivity : AppCompatActivity() {
 
     private lateinit var cameraExecutor: ExecutorService
 
-    private var photoFile: File? = null
+    private var file: File? = null
 
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
     private var imageCapture: ImageCapture? = null
@@ -107,10 +107,15 @@ class CameraActivity : AppCompatActivity() {
                 finish()
             }
             btnSend.setOnClickListener {
-                showProfileDialog()
-
-            //TODO: Implementasi upload image
-            // uploadImage()
+                when (file) {
+                    null -> {
+                        showMessage(getString(R.string.image_not_found))
+                    }
+                    else -> {
+                        uploadImage()
+                    }
+                }
+                //TODO: Implementasi upload image
 
             }
             btnVerifiedCapture.setOnClickListener {
@@ -130,21 +135,22 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun uploadImage() {
-        val file = reduceFileImage(photoFile as File)
+        val file = reduceFileImage(file as File)
         val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-            "photo",
+            "avatar",
             file.name,
             requestImageFile
         )
         viewModel.user.observe(this@CameraActivity) {
             if (it.token.isNotEmpty()) {
-                viewModel.uploadImage(it.token, imageMultipart).observe(this) { result ->
+                viewModel.uploadImage(imageMultipart, it.token).observe(this) { result ->
                     when (result) {
                         is Result.Loading -> {
                             showLoading(true)
                         }
                         is Result.Success -> {
+                            showProfileDialog()
                             showLoading(false)
                             finish()
 
@@ -172,9 +178,9 @@ class CameraActivity : AppCompatActivity() {
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
 
-        photoFile = createFile(application)
+        val photoFile = createFile(application)
 
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile!!).build()
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
         imageCapture.takePicture(
             outputOptions,
             ContextCompat.getMainExecutor(this),
@@ -190,9 +196,11 @@ class CameraActivity : AppCompatActivity() {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
 
                     val result = rotateBitmap(
-                        BitmapFactory.decodeFile(photoFile!!.path),
+                        BitmapFactory.decodeFile(photoFile.path),
                         true
                     )
+                    file = photoFile
+
                     binding?.apply {
                         ivResult.apply {
                             setImageBitmap(result)
@@ -237,6 +245,7 @@ class CameraActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
+
     private fun hideSystemUI() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -253,12 +262,10 @@ class CameraActivity : AppCompatActivity() {
     private fun showProfileDialog() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.dialog_success)
+        dialog.setContentView(R.layout.dialog_success_uploaded)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.show()
 
-        val message = findViewById<TextView>(R.id.tv_dialog_success)
-        message.text = "Image uploaded successfully"
+        dialog.show()
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
     }

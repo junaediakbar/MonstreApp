@@ -62,8 +62,9 @@ interface ApiService {
 
     @Multipart
     @POST("update-avatar")
+    @Headers("Connection: keep-alive")
     suspend fun updateImage(
-        @Header("Authorization") token: String,
         @Part avatar: MultipartBody.Part,
+        @Header("Authorization") token: String,
     ): UserResponse
 }

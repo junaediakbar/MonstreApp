@@ -3,6 +3,7 @@ package com.monstre.monstreapp.ui.home
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +19,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.monstre.monstreapp.R
 import com.monstre.monstreapp.data.Result
 import com.monstre.monstreapp.data.local.preference.SharedPreference
@@ -30,6 +36,7 @@ import com.monstre.monstreapp.ui.adapter.SuggestionAdapter
 import com.monstre.monstreapp.ui.detailarticle.ArticleFragment
 import com.monstre.monstreapp.utils.stressList
 import com.monstre.monstreapp.utils.stressListMonth
+import com.monstre.monstreapp.utils.visibility
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -66,6 +73,13 @@ class HomeFragment : Fragment() {
 
             }
 
+            imageButton.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_nav_home_to_nav_profile,
+                    null,
+                    null
+                )
+            }
             tvMonth.setOnClickListener {
                 tvMonth.setTypeface(null, Typeface.BOLD)
                 tvYear.setTypeface(null, Typeface.NORMAL)
@@ -88,6 +102,31 @@ class HomeFragment : Fragment() {
 
             viewModel.user.observe(viewLifecycleOwner) { user ->
                 if (user.token.isNotEmpty()) {
+                    Glide.with(imageButton.context)
+                        .load("https://monstre-production.herokuapp.com/storage/images/avatars/${user.id}/${user.avatar}")
+                        .placeholder(R.drawable.img_profile_avatar)
+                        .listener(object : RequestListener<Drawable> {
+                            override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                return false
+                            }
+
+                            override fun onResourceReady(
+                                resource: Drawable?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                return false
+                            }
+                        })
+                        .into(imageButton)
+
                     binding?.tvHelloUser?.text = "Hi, ${user.name}!"
                     viewModel.badges.observe(viewLifecycleOwner) { badge ->
                         if (badge == "Week") {
@@ -119,26 +158,36 @@ class HomeFragment : Fragment() {
                                 }
                                 is Result.Success -> {
                                     showLoading(false)
-                                    binding.apply {
-                                        val adapter = SuggestionAdapter(result.data.data)
-                                        rvSuggestion.adapter = adapter
-                                        adapter.onItemClick = {
-                                            val bundle =
-                                                bundleOf(ArticleFragment.EXTRA_ARTICLE to it)
-                                            view.findNavController()
-                                                .navigate(R.id.articleFragment, bundle)
+                                    binding?.tvNotFoundArticle?.visibility = visibility(false)
+                                    if(result.data.type == "message"){
+                                        binding.apply {
+                                            tvNotFoundArticle?.visibility = visibility(true)
+                                            tvNotFoundArticle.text = result.data.data[0].desc
+                                            tvTitleSuggestion.text=result.data.data[0].title
                                         }
+                                    }else{
+                                        binding.apply {
+                                            val adapter = SuggestionAdapter(result.data.data)
+                                            rvSuggestion.adapter = adapter
+                                            adapter.onItemClick = {
+                                                val bundle =
+                                                    bundleOf(ArticleFragment.EXTRA_ARTICLE to it)
+                                                view.findNavController()
+                                                    .navigate(R.id.articleFragment, bundle)
+                                            }
 
+                                        }
                                     }
+
+
                                 }
                                 is Result.Error -> {
                                     showLoading(false)
-                                    showMessage(getString(R.string.something_wrong))
+                                    binding?.tvNotFoundArticle?.visibility = visibility(true)
+                                    showMessage(getString(R.string.no_article_found))
                                 }
                             }
                         }
-
-
                     }
 
                     viewModel.getSaturation(user.token).observe(viewLifecycleOwner) { result ->

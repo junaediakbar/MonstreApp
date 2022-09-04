@@ -19,6 +19,8 @@ class MonstreRepository(
         emit(Result.Loading)
         try {
             val response = apiService.getProfile(token)
+            pref.saveAvatar(response.avatar)
+            pref.saveId(response.id.toString())
             emit(Result.Success(response))
         } catch (e: Exception) {
             Log.d(MonstreRepository.TAG, "profile: ${e.message.toString()} ")
@@ -82,18 +84,18 @@ class MonstreRepository(
         }
     }
 
-    fun updateImage(token:  String, imageMultipart: MultipartBody.Part): LiveData<Result<UserResponse>> =  liveData {
+    fun updateImage(imageMultipart: MultipartBody.Part, token:  String): LiveData<Result<UserResponse>> =  liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.updateImage(token, imageMultipart)
+            val response = apiService.updateImage( imageMultipart, token)
             emit(Result.Success(response))
+            pref.saveAvatar(response.avatar)
+            pref.saveId(response.id.toString())
         } catch (e: Exception) {
-            Log.d(MonstreRepository.TAG, "saturation: ${e.message.toString()} ")
+            Log.d(MonstreRepository.TAG, "updateImage: ${e.message.toString()} ")
             emit(Result.Error(e.message.toString()))
         }
     }
-
-
 
     val user: Flow<User>
         get() = pref.getData()

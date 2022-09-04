@@ -13,17 +13,31 @@ class SharedPreference private constructor(private val dataStore: DataStore<Pref
     fun getData(): Flow<User> {
         return dataStore.data.map { preferences ->
             User(
+                preferences[USER_ID]?: "",
                 preferences[USER_NAME]?: "",
                 preferences[TOKEN_KEY] ?: "",
-                preferences[SELECTED_MBTI_KEY] ?: ""
+                preferences[SELECTED_MBTI_KEY] ?: "",
+                preferences[USER_AVATAR] ?: ""
             )
         }
     }
+
 
     suspend fun saveUser(username: String,token: String) {
         dataStore.edit { preferences ->
             preferences[USER_NAME] = username
             preferences[TOKEN_KEY] = token
+        }
+    }
+
+    suspend fun saveId(id: String){
+        dataStore.edit { preferences ->
+            preferences[USER_ID] = id.toString()
+        }
+    }
+    suspend fun saveAvatar(avatar: String){
+        dataStore.edit { preferences ->
+            preferences[USER_AVATAR] = avatar
         }
     }
 
@@ -37,9 +51,11 @@ class SharedPreference private constructor(private val dataStore: DataStore<Pref
         @Volatile
         private var INSTANCE: SharedPreference? = null
 
+        private val USER_ID = stringPreferencesKey("user_id")
         private val USER_NAME = stringPreferencesKey("user_name")
         private val TOKEN_KEY = stringPreferencesKey("token_key")
         private val SELECTED_MBTI_KEY = stringPreferencesKey("selected_mbti")
+        private val USER_AVATAR = stringPreferencesKey("user_avatar")
 
         fun getInstance(dataStore: DataStore<Preferences>): SharedPreference {
             return INSTANCE ?: synchronized(this) {

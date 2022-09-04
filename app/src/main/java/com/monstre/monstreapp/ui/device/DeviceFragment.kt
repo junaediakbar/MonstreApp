@@ -14,6 +14,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.monstre.monstreapp.R
@@ -22,6 +23,7 @@ import com.monstre.monstreapp.databinding.FragmentDeviceBinding
 import com.monstre.monstreapp.ui.ViewModelFactory
 import com.monstre.monstreapp.ui.adapter.DeviceAdapter
 import com.monstre.monstreapp.utils.deviceList
+import kotlinx.coroutines.launch
 
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -41,6 +43,7 @@ class DeviceFragment : Fragment() {
 
         val setLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
+        setupViewModel()
         binding?.apply {
             rvDeviceList.apply {
                 setHasFixedSize(true)
@@ -67,6 +70,12 @@ class DeviceFragment : Fragment() {
                 viewModel.user.observe(viewLifecycleOwner){
                     if (it.token.isEmpty()){
                         findNavController().popBackStack()
+                    }else{
+                        lifecycleScope.launch{
+                            viewModel.logout()
+                            findNavController().popBackStack()
+                        }
+
                     }
                 }
 

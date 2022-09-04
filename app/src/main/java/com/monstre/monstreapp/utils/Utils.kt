@@ -164,7 +164,7 @@ fun reduceFileImage(file: File, step: Int = 5): File {
         val bmpPicByteArray = bmpStream.toByteArray()
         streamLength = bmpPicByteArray.size
         compressQuality -= step
-    } while (streamLength > 1000000)
+    } while (streamLength > 500000)
 
     bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
     return file

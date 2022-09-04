@@ -48,6 +48,7 @@ class MbtiFragment : Fragment() {
                 viewModel.user.observe(viewLifecycleOwner){user ->
                     viewModel.selectedMbti.observe(viewLifecycleOwner){mbti ->
                         if(user.token.isNotEmpty() && mbti!= ""){
+                            Log.e("token =========", user.token)
                             viewModel.updateMbti(user.token,mbti.uppercase()).observe(viewLifecycleOwner){ result->
                                 if (result != null) {
                                     when (result) {
