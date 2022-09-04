@@ -217,10 +217,10 @@ class HomeFragment : Fragment() {
                                                 ivMood.setImageResource(R.drawable.img_emoji_stress)
                                             }
                                         }
-                                        if (result.data.data.stressNumber < 30) {
+                                        if (result.data.data.stressNumber < 40) {
                                             tvMoodField.text = "Good"
-                                        } else if (result.data.data.stressNumber >= 30 || result.data.data.stressNumber < 70) {
-                                            tvMoodField.text = "Not Good"
+                                        } else if (result.data.data.stressNumber >= 40 || result.data.data.stressNumber < 70) {
+                                            tvMoodField.text = "Netral"
                                         } else {
                                             tvMoodField.text = "Bad"
                                         }
