@@ -72,7 +72,7 @@ class DeviceFragment : Fragment() {
                         findNavController().popBackStack()
                     }else{
                         lifecycleScope.launch{
-                            viewModel.logout()
+                            viewModel.logout(it.token)
                             findNavController().popBackStack()
                         }
 

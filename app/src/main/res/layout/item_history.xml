@@ -51,15 +51,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_stress_bpm"
+            android:id="@+id/tv_stress_spo2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BPM "
-            app:layout_constraintStart_toStartOf="@+id/tv_stress_bpm_number"
+            android:layout_marginStart="4dp"
+            android:text="SpO2"
+            app:layout_constraintStart_toStartOf="@+id/tv_stress_spo2_number"
             app:layout_constraintTop_toTopOf="@+id/tv_stress_level" />
 
         <TextView
-            android:id="@+id/tv_stress_bpm_number"
+            android:id="@+id/tv_stress_spo2_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-8dp"
@@ -68,26 +69,26 @@
             android:text="90"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_stress_bpm" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_stress_spo2" />
 
         <TextView
-            android:id="@+id/tv_stress_hr_number"
+            android:id="@+id/tv_stress_bpm_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-8dp"
             android:fontFamily="@font/sf_pro_text_bold"
             android:text="90"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_stress_hr"
-            app:layout_constraintTop_toBottomOf="@+id/tv_stress_hr" />
+            app:layout_constraintStart_toStartOf="@+id/tv_stress_bpm"
+            app:layout_constraintTop_toBottomOf="@+id/tv_stress_bpm" />
 
         <TextView
-            android:id="@+id/tv_stress_hr"
+            android:id="@+id/tv_stress_bpm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="Heartrate"
-            app:layout_constraintEnd_toStartOf="@+id/tv_stress_bpm_number"
+            android:text="BPM"
+            app:layout_constraintEnd_toStartOf="@+id/tv_stress_spo2_number"
             app:layout_constraintTop_toTopOf="@+id/tv_stress_level" />
 
         <TextView
@@ -101,7 +102,7 @@
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_stress_hr_number" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_stress_bpm_number" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

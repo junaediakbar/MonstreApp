@@ -16,6 +16,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.monstre.monstreapp.R
 import com.monstre.monstreapp.data.Result
 import com.monstre.monstreapp.data.local.preference.SharedPreference
@@ -74,28 +76,18 @@ class HomeFragment : Fragment() {
             }
 
             imageButton.setOnClickListener {
-                findNavController().navigate(
-                    R.id.action_nav_home_to_nav_profile,
-                    null,
-                    null
-                )
+                findNavController().navigate(R.id.action_nav_home_to_nav_profile, null, null)
             }
             tvMonth.setOnClickListener {
-                tvMonth.setTypeface(null, Typeface.BOLD)
-                tvYear.setTypeface(null, Typeface.NORMAL)
-                tvWeek.setTypeface(null, Typeface.NORMAL)
+                setViewSelectedBagde("Month")
                 viewModel.setBadges("Month")
             }
             tvWeek.setOnClickListener {
-                tvWeek.setTypeface(null, Typeface.BOLD)
-                tvYear.setTypeface(null, Typeface.NORMAL)
-                tvMonth.setTypeface(null, Typeface.NORMAL)
+                setViewSelectedBagde("Week")
                 viewModel.setBadges("Week")
             }
             tvYear.setOnClickListener {
-                tvYear.setTypeface(null, Typeface.BOLD)
-                tvWeek.setTypeface(null, Typeface.NORMAL)
-                tvMonth.setTypeface(null, Typeface.NORMAL)
+                setViewSelectedBagde("Year")
                 viewModel.setBadges("Year")
             }
 
@@ -130,6 +122,7 @@ class HomeFragment : Fragment() {
                     binding?.tvHelloUser?.text = "Hi, ${user.name}!"
                     viewModel.badges.observe(viewLifecycleOwner) { badge ->
                         if (badge == "Week") {
+                            setViewSelectedBagde("Week")
                             viewModel.getSaturationFullWeek(user.token)
                                 .observe(viewLifecycleOwner) { result ->
                                     if (result != null) {
@@ -139,6 +132,7 @@ class HomeFragment : Fragment() {
                                     }
                                 }
                         } else if (badge == "Month") {
+                            setViewSelectedBagde("Month")
                             viewModel.getSaturationFullMonth(user.token)
                                 .observe(viewLifecycleOwner) { result ->
                                     if (result != null) {
@@ -147,6 +141,8 @@ class HomeFragment : Fragment() {
                                         }
                                     }
                                 }
+                        }else{
+                            setViewSelectedBagde("Year")
                         }
                     }
 
@@ -159,13 +155,13 @@ class HomeFragment : Fragment() {
                                 is Result.Success -> {
                                     showLoading(false)
                                     binding?.tvNotFoundArticle?.visibility = visibility(false)
-                                    if(result.data.type == "message"){
+                                    if (result.data.type == "message") {
                                         binding.apply {
                                             tvNotFoundArticle?.visibility = visibility(true)
                                             tvNotFoundArticle.text = result.data.data[0].desc
-                                            tvTitleSuggestion.text=result.data.data[0].title
+                                            tvTitleSuggestion.text = result.data.data[0].title
                                         }
-                                    }else{
+                                    } else {
                                         binding.apply {
                                             val adapter = SuggestionAdapter(result.data.data)
                                             rvSuggestion.adapter = adapter
@@ -241,6 +237,19 @@ class HomeFragment : Fragment() {
         return binding?.root
     }
 
+    private fun setViewSelectedBagde(badge: String){
+        binding?.apply {
+            tvMonth.setTypeface(null, Typeface.NORMAL)
+            tvYear.setTypeface(null, Typeface.NORMAL)
+            tvWeek.setTypeface(null, Typeface.NORMAL)
+            when (badge){
+                "Month"->tvMonth.setTypeface(null, Typeface.BOLD)
+                "Year"->tvYear.setTypeface(null, Typeface.BOLD)
+                "Week"->tvMonth.setTypeface(null, Typeface.BOLD)
+            }
+        }
+    }
+
     private fun setResultSaturationList(
         result: Result<GeneralSaturationListResponse>,
         badge: String
@@ -269,6 +278,7 @@ class HomeFragment : Fragment() {
                     stressList[index].level = data.stressNumber
                     stressListMonth[index].level = data.stressNumber
                 }
+
                 binding?.apply {
                     viewModel.badges.observe(viewLifecycleOwner) {
                         if (it == "Week") {

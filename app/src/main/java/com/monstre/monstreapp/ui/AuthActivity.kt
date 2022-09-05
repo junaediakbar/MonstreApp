@@ -49,18 +49,18 @@ class AuthActivity : AppCompatActivity() {
             this@AuthActivity
         ) {
 //TODO: add it later && it.selectedMbti.isNotEmpty()
-            if(it.token.isNotEmpty()&& it.selectedMbti.isNotEmpty()){
+            if(it.token.isNotEmpty()&& it.selectedMbti!=""){
                 val intent = Intent (this@AuthActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
+            }else{
+                val startingPoint =
+                    if (it.token.isNotEmpty()) (R.id.nav_device) else (R.id.nav_login)
+                val graphInflater = navController.navInflater
+                val navGraph = graphInflater.inflate(R.navigation.auth_navigation)
+                navGraph.setStartDestination(startingPoint)
+                navController.graph = navGraph
             }
-            val startingPoint =
-                if (it.token.isNotEmpty()) (R.id.nav_device) else (R.id.nav_login)
-            val graphInflater = navController.navInflater
-            val navGraph = graphInflater.inflate(R.navigation.auth_navigation)
-            navGraph.setStartDestination(startingPoint)
-            navController.graph = navGraph
-
 
         }
     }

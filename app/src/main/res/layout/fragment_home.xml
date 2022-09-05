@@ -13,14 +13,18 @@
 
         <TextView
             android:id="@+id/tv_hello_user"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="12dp"
-            android:text="Hi, Arum!"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Hi, User!"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageButton"></TextView>
 
@@ -222,12 +226,12 @@
                     android:id="@+id/tv_week"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="16dp"
                     android:text="Week"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/rv_stress" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_stress" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
@@ -325,7 +329,6 @@
                     android:id="@+id/tv_bpm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="12dp"
                     android:text="BPM"
                     app:layout_constraintStart_toEndOf="@+id/tv_bpm_number"
@@ -348,6 +351,7 @@
                     android:id="@+id/imageView5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="-16dp"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/img_heart_beat"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -428,7 +432,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="97"
-                    android:textSize="28sp"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/circularProgressIndicator"
                     app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
                     app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"

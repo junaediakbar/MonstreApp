@@ -26,25 +26,28 @@ class ViewModelFactory(private val pref: SharedPreference, private val context: 
             modelClass.isAssignableFrom(CameraViewModel::class.java) -> {
                 CameraViewModel(Injection.provideMonstreeRepository(context)) as T
             }
-            modelClass.isAssignableFrom(LoginViewModel::class.java)->{
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(Injection.provideAuthRepository(context)) as T
             }
-            modelClass.isAssignableFrom(DeviceViewModel::class.java)->{
+            modelClass.isAssignableFrom(DeviceViewModel::class.java) -> {
                 DeviceViewModel(Injection.provideAuthRepository(context)) as T
             }
-            modelClass.isAssignableFrom(SignUpViewModel::class.java)->{
+            modelClass.isAssignableFrom(SignUpViewModel::class.java) -> {
                 SignUpViewModel(Injection.provideAuthRepository(context)) as T
             }
-            modelClass.isAssignableFrom(AuthViewModel::class.java)->{
+            modelClass.isAssignableFrom(AuthViewModel::class.java) -> {
                 AuthViewModel(Injection.provideAuthRepository(context)) as T
             }
-            modelClass.isAssignableFrom(ProfileViewModel::class.java)->{
-                ProfileViewModel(Injection.provideMonstreeRepository(context)) as T
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(
+                    Injection.provideMonstreeRepository(context),
+                    Injection.provideAuthRepository(context)
+                ) as T
             }
-            modelClass.isAssignableFrom(HomeViewModel::class.java)->{
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(Injection.provideMonstreeRepository(context)) as T
             }
-            modelClass.isAssignableFrom(HistoryViewModel::class.java)->{
+            modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {
                 HistoryViewModel(Injection.provideMonstreeRepository(context)) as T
             }
 

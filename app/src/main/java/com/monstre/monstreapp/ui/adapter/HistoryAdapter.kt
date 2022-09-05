@@ -27,8 +27,9 @@ class HistoryAdapter(
         var imgPhoto = itemBinding.ivStressLevel
         var tvStressLevel = itemBinding.tvStressLevel
         var tvStressNumber = itemBinding.tvStressNumber
-        var tvStressHrNumber = itemBinding.tvStressHrNumber
-        var tvStressBpm = itemBinding.tvStressBpmNumber
+        var tvStressSpO2Number = itemBinding.tvStressSpo2Number
+        var tvStressBpmNumber = itemBinding.tvStressBpmNumber
+        var tvStressDate = itemBinding.tvStressDate
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryHolder {
@@ -67,8 +68,9 @@ class HistoryAdapter(
                 }
             }
             tvStressLevel.text = saturationData.desc
-            tvStressBpm.text = saturationData.bpm.toString()
-            tvStressHrNumber.text = saturationData.spo2.toString()
+            tvStressDate.text = saturationData.date
+            tvStressBpmNumber.text = saturationData.bpm.toString()
+            tvStressSpO2Number.text = saturationData.spo2.toString()
             tvStressNumber.text = "Lvl. " + saturationData.stressNumber.toString()
         }
     }

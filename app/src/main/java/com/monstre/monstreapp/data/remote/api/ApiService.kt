@@ -40,7 +40,7 @@ interface ApiService {
         @Header("Authorization") token: String,
     ): TodaySaturationResponse
 
-    @GET("saturation/get-week")
+    @GET("saturation/get-full-week")
     suspend fun getSaturationFullWeek(
         @Header("Authorization") token: String,
     ): GeneralSaturationListResponse
@@ -67,4 +67,10 @@ interface ApiService {
         @Part avatar: MultipartBody.Part,
         @Header("Authorization") token: String,
     ): UserResponse
+
+    @POST("logout")
+    suspend fun logout(
+        @Header("Authorization") token: String,
+    ): GenericResponse
+
 }

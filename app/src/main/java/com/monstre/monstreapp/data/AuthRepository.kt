@@ -52,18 +52,27 @@ class AuthRepository(
             }
         }
 
-    suspend fun logout() {
-        pref.saveUser(
-            "",
-            ""
-        )
-        pref.saveAvatar(
-            ""
-        )
-        pref.saveSelectedMbti(
-            ""
-        )
-        pref.saveId("")
+    suspend fun logout(token: String) = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.logout(token)
+            emit(Result.Success(response))
+            pref.saveUser(
+                "",
+                ""
+            )
+            pref.saveAvatar(
+                ""
+            )
+            pref.saveSelectedMbti(
+                ""
+            )
+            pref.saveId("")
+        } catch (e: Exception) {
+            Log.d(TAG, "signup: ${e.message.toString()} ")
+            emit(Result.Error(e.message.toString()))
+        }
+
     }
 
     fun updateMbti(token: String, mbti: String ) = liveData {

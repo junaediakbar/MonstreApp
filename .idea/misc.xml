@@ -8,6 +8,7 @@
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/bg_button_gradient.xml" value="0.141" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/bg_button_white.xml" value="0.173" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/bg_circle.xml" value="0.1" />
+        <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/bg_cirlce_button_white.xml" value="0.1" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/bg_dialog_rounded.xml" value="0.1" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/bg_image_circle.xml" value="0.1" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/bg_litte_button.xml" value="0.1" />
@@ -29,6 +30,7 @@
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/ic_eyeline_selector.xml" value="0.1" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/ic_history_selector.xml" value="0.1" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/ic_home_selector.xml" value="0.1" />
+        <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/ic_logout.xml" value="0.1" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/ic_notification_selector.xml" value="0.1" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/ic_profile_selector.xml" value="0.1" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/drawable/img_avatar.xml" value="0.1" />
@@ -48,14 +50,14 @@
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/fragment_camera_result.xml" value="0.13541666666666666" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/fragment_device.xml" value="0.22" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/fragment_history.xml" value="0.18229166666666666" />
-        <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/fragment_home.xml" value="0.381057268722467" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/fragment_login.xml" value="0.14666666666666667" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/fragment_mbti.xml" value="0.22" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/fragment_notification.xml" value="0.12" />
-        <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/fragment_profile.xml" value="0.3333333333333333" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/fragment_sign_up.xml" value="0.22" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/item_device.xml" value="0.22" />
-        <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/item_history.xml" value="0.4466666666666667" />
+        <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/item_history.xml" value="0.3333333333333333" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/item_mbti.xml" value="0.4466666666666667" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/item_notification.xml" value="0.3333333333333333" />
         <entry key="..\:/Pelatihan/MonstreApp/app/src/main/res/layout/item_stress_progress.xml" value="0.4466666666666667" />

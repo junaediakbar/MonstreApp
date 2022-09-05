@@ -23,6 +23,7 @@ class MbtiAdapter(
         mbtiList.map{
             it.isSelected =false
         }
+        viewModel.updateStateMbti("")
     }
     private var onItemClickCallback: OnItemClickCallback? = null
 
@@ -66,7 +67,10 @@ class MbtiAdapter(
             itemView.setOnClickListener {
                 mbtiData.isSelected = !mbtiData.isSelected
                 selectedMbti = mbtiList[position].name + "-A/T"
-                viewModel.updateStateMbti(selectedMbti)
+                if(mbtiData.isSelected) viewModel.updateStateMbti( selectedMbti)
+                else{
+                    viewModel.updateStateMbti("")
+                }
                 //  if (mModelList.filter { it.isSelected }.isEmpty()) previousPosition = -1
                 notifyItemChanged(previousPosition)
                 if (previousPosition != -1 && previousPosition != position) {

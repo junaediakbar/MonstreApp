@@ -53,13 +53,15 @@
 
     <TextView
         android:id="@+id/tv_profile_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/sf_pro_text_bold"
         android:text="Username"
         android:textColor="@color/white"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/iv_logout"
         app:layout_constraintStart_toEndOf="@+id/iv_avatar"
         app:layout_constraintTop_toTopOf="@+id/iv_avatar" />
 
@@ -88,25 +90,14 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_profile_account" />
 
     <TextView
-        android:id="@+id/tv_profile_nomor_hp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/sf_pro_text_regular"
-        android:text="+62 895-8077-45577"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/tv_profile_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_name" />
-
-    <TextView
         android:id="@+id/tv_profile_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_text_regular"
         android:text="email@gmail.com"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/tv_profile_nomor_hp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_nomor_hp" />
+        app:layout_constraintStart_toStartOf="@+id/tv_profile_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_name" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -118,6 +109,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_logout"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_cirlce_button_white"
+        android:src="@drawable/ic_logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

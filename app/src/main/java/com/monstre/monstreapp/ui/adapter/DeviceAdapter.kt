@@ -31,6 +31,7 @@ class DeviceAdapter(private val deviceList: ArrayList<Device>) : RecyclerView.Ad
                 onItemClick?.invoke(deviceList[adapterPosition])
 
             }
+
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceHolder {

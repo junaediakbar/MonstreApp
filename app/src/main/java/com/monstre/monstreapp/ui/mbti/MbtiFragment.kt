@@ -43,35 +43,46 @@ class MbtiFragment : Fragment() {
         setupViewModel()
         setRecyclerView()
 
-        binding?.apply {
-            btnNext.setOnClickListener {
-                viewModel.user.observe(viewLifecycleOwner){user ->
-                    viewModel.selectedMbti.observe(viewLifecycleOwner){mbti ->
-                        if(user.token.isNotEmpty() && mbti!= ""){
+
+
+        viewModel.user.observe(viewLifecycleOwner) { user ->
+            viewModel.selectedMbti.observe(viewLifecycleOwner) { mbti ->
+
+                binding?.apply {
+                    btnNext.setOnClickListener {
+                        if (mbti == "") {
+                            Toast.makeText(
+                                activity,
+                                "Please input a personality",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        if (user.token.isNotEmpty() && mbti != "") {
                             Log.e("token =========", user.token)
-                            viewModel.updateMbti(user.token,mbti.uppercase()).observe(viewLifecycleOwner){ result->
-                                if (result != null) {
-                                    when (result) {
-                                        is Result.Loading -> {
-                                            showLoading(true)
-                                        }
-                                        is Result.Success -> {
-                                            showLoading(false)
-                                            val intent = Intent (requireActivity(), MainActivity::class.java)
-                                            startActivity(intent)
-                                            activity?.finish()
-                                        }
-                                        is Result.Error -> {
-                                            showLoading(false)
-                                            showMessage(getString(R.string.something_wrong))
+                            viewModel.updateMbti(user.token, mbti.uppercase())
+                                .observe(viewLifecycleOwner) { result ->
+                                    if (result != null) {
+                                        when (result) {
+                                            is Result.Loading -> {
+                                                showLoading(true)
+                                            }
+                                            is Result.Success -> {
+                                                showLoading(false)
+                                                val intent = Intent(
+                                                    requireActivity(),
+                                                    MainActivity::class.java
+                                                )
+                                                startActivity(intent)
+                                                activity?.finish()
+                                            }
+                                            is Result.Error -> {
+                                                showLoading(false)
+                                                showMessage(getString(R.string.something_wrong))
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        }else{
-                            Toast.makeText(activity, "Please input a personality", Toast.LENGTH_SHORT).show()
                         }
-
                     }
 
                 }
@@ -88,9 +99,9 @@ class MbtiFragment : Fragment() {
         binding?.apply {
             rvMbtiList.apply {
                 layoutManager = setLayoutManager
-                adapter = MbtiAdapter(mbtiList,viewModel)
+                adapter = MbtiAdapter(mbtiList, viewModel)
             }.addItemDecoration(
-                MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.recylerViewMargin),2)
+                MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.recylerViewMargin), 2)
             )
 
         }

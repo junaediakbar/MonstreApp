@@ -4,19 +4,19 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.monstre.monstreapp.R
 import com.monstre.monstreapp.databinding.ActivityMainBinding
-import androidx.navigation.ui.setupWithNavController
 import com.monstre.monstreapp.ui.camera.CameraActivity
 import com.monstre.monstreapp.utils.rotateBitmap
 import java.io.File
@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity() {
 
         navView.setOnItemSelectedListener {
             NavigationUI.onNavDestinationSelected(it, navHostFragment.navController)
+            findNavController(R.id.container).popBackStack(it.itemId, inclusive = false)
+            true
         }
 
         navHostFragment.navController.addOnDestinationChangedListener { _, dest, _ ->
@@ -77,7 +79,6 @@ class MainActivity : AppCompatActivity() {
                 View.GONE
             }
         }
-
 
 
         binding.fabCamera.setOnClickListener {
@@ -116,11 +117,6 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.container)
         return navController.navigateUp() || super.onSupportNavigateUp()
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-
     }
 
     companion object {
