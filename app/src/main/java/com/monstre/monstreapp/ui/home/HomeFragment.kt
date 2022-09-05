@@ -16,7 +16,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,11 +24,9 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.monstre.monstreapp.R
 import com.monstre.monstreapp.data.Result
 import com.monstre.monstreapp.data.local.preference.SharedPreference
-import com.monstre.monstreapp.data.remote.response.ArticleItem
 import com.monstre.monstreapp.data.remote.response.GeneralSaturationListResponse
 import com.monstre.monstreapp.databinding.FragmentHomeBinding
 import com.monstre.monstreapp.ui.ViewModelFactory
@@ -141,7 +138,7 @@ class HomeFragment : Fragment() {
                                         }
                                     }
                                 }
-                        }else{
+                        } else {
                             setViewSelectedBagde("Year")
                         }
                     }
@@ -157,7 +154,7 @@ class HomeFragment : Fragment() {
                                     binding?.tvNotFoundArticle?.visibility = visibility(false)
                                     if (result.data.type == "message") {
                                         binding.apply {
-                                            tvNotFoundArticle?.visibility = visibility(true)
+                                            tvNotFoundArticle.visibility = visibility(true)
                                             tvNotFoundArticle.text = result.data.data[0].desc
                                             tvTitleSuggestion.text = result.data.data[0].title
                                         }
@@ -174,8 +171,6 @@ class HomeFragment : Fragment() {
 
                                         }
                                     }
-
-
                                 }
                                 is Result.Error -> {
                                     showLoading(false)
@@ -194,33 +189,44 @@ class HomeFragment : Fragment() {
                                 }
                                 is Result.Success -> {
                                     showLoading(false)
-                                    binding.apply {
-                                        tvBpmNumber.text = result.data.data.bpm.toString()
-                                        tvOxygenNumber.text = result.data.data.spo2.toString()
-                                        circularProgressIndicator.progress = result.data.data.spo2
-                                        circularProgressIndicator.max = 120
-                                        when (result.data.data.desc) {
-                                            "Calm" -> {
-                                                ivMood.setImageResource(R.drawable.img_emoji_smile)
+                                    if (result.data.data == null) {
+                                        viewModel.getSmartWatchData()
+                                            .observe(viewLifecycleOwner) { result ->
+                                                when (result) {
+                                                    is Result.Loading -> {
+                                                        showLoading(true)
+                                                    }
+                                                    is Result.Success -> {
+                                                        postSaturationToday(
+                                                            user.token,
+                                                            result.data.heartRate.toString(),
+                                                            result.data.oxiRate.toString()
+                                                        )
+                                                        setOxiBpmView(
+                                                            result.data.heartRate.toString(),
+                                                            result.data.oxiRate.toString(),
+                                                        )
+                                                        showLoading(false)
+                                                    }
+                                                    is Result.Error -> {
+                                                        showLoading(false)
+                                                        showMessage(getString(R.string.something_wrong))
+                                                    }
+                                                }
                                             }
-                                            "Relax" -> {
-                                                ivMood.setImageResource(R.drawable.img_emoji_relax)
-                                            }
-                                            "Anxious" -> {
-                                                ivMood.setImageResource(R.drawable.img_emoji_anxious)
-                                            }
-                                            "Stressed" -> {
-                                                ivMood.setImageResource(R.drawable.img_emoji_stress)
-                                            }
+                                    } else {
+                                        binding.apply {
+                                            setOxiBpmView(
+                                                result.data.data.bpm.toString(),
+                                                result.data.data.spo2.toString(),
+                                            )
+                                            setMoodView(
+                                                result.data.data.stressNumber,
+                                                result.data.data.desc
+                                            )
+
                                         }
-                                        if (result.data.data.stressNumber < 40) {
-                                            tvMoodField.text = "Good"
-                                        } else if (result.data.data.stressNumber >= 40 || result.data.data.stressNumber < 70) {
-                                            tvMoodField.text = "Netral"
-                                        } else {
-                                            tvMoodField.text = "Bad"
-                                        }
-                                        tvEmotionField.text = result.data.data.desc
+
                                     }
                                 }
                                 is Result.Error -> {
@@ -237,15 +243,72 @@ class HomeFragment : Fragment() {
         return binding?.root
     }
 
-    private fun setViewSelectedBagde(badge: String){
+    private fun setOxiBpmView(bpm: String, spo2: String) {
+        binding?.apply {
+            tvBpmNumber.text =
+                bpm
+            tvOxygenNumber.text =
+                spo2
+            circularProgressIndicator.progress =
+                spo2.toInt()
+            circularProgressIndicator.max = 100
+        }
+    }
+
+    private fun setMoodView(stressLevel: Int, desc: String) {
+        binding?.apply {
+            when (desc) {
+                "Calm" -> {
+                    ivMood.setImageResource(R.drawable.img_emoji_smile)
+                }
+                "Relax" -> {
+                    ivMood.setImageResource(R.drawable.img_emoji_relax)
+                }
+                "Anxious" -> {
+                    ivMood.setImageResource(R.drawable.img_emoji_anxious)
+                }
+                "Stressed" -> {
+                    ivMood.setImageResource(R.drawable.img_emoji_stress)
+                }
+            }
+            tvEmotionField.text = desc
+            if (stressLevel < 40) {
+                tvMoodField.text = "Good"
+            } else if (stressLevel >= 40 || stressLevel < 70) {
+                tvMoodField.text = "Netral"
+            } else {
+                tvMoodField.text = "Bad"
+            }
+        }
+    }
+
+    private fun postSaturationToday(token: String, bpm: String, spo2: String) {
+        viewModel.postSaturationToday(token, bpm, spo2).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    showLoading(true)
+                }
+                is Result.Success -> {
+                    setMoodView(result.data.data.stressNumber.toInt(),result.data.data.desc)
+                    showLoading(false)
+                }
+                is Result.Error -> {
+                    showLoading(false)
+                    showMessage(getString(R.string.something_wrong))
+                }
+            }
+        }
+    }
+
+    private fun setViewSelectedBagde(badge: String) {
         binding?.apply {
             tvMonth.setTypeface(null, Typeface.NORMAL)
             tvYear.setTypeface(null, Typeface.NORMAL)
             tvWeek.setTypeface(null, Typeface.NORMAL)
-            when (badge){
-                "Month"->tvMonth.setTypeface(null, Typeface.BOLD)
-                "Year"->tvYear.setTypeface(null, Typeface.BOLD)
-                "Week"->tvMonth.setTypeface(null, Typeface.BOLD)
+            when (badge) {
+                "Month" -> tvMonth.setTypeface(null, Typeface.BOLD)
+                "Year" -> tvYear.setTypeface(null, Typeface.BOLD)
+                "Week" -> tvMonth.setTypeface(null, Typeface.BOLD)
             }
         }
     }
@@ -274,9 +337,10 @@ class HomeFragment : Fragment() {
                         date?.let { outFormat.format(it).subSequence(0, 3) }
                     val index =
                         stressList.indexOfFirst { it.time == goal }
-                    stressList.indexOfFirst { it.time == data.date.subSequence(8, 10) }
+                    val indexMonth = stressListMonth.indexOfFirst { it.time == data.date.subSequence(8, 10) }
+                    Log.e("date =====" ,data.date.subSequence(8, 10).toString())
                     stressList[index].level = data.stressNumber
-                    stressListMonth[index].level = data.stressNumber
+                    stressListMonth[indexMonth].level = data.stressNumber
                 }
 
                 binding?.apply {

@@ -1,6 +1,5 @@
 package com.monstre.monstreapp.ui
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,18 +9,12 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import com.monstre.monstreapp.R
 import com.monstre.monstreapp.data.local.preference.SharedPreference
 import com.monstre.monstreapp.databinding.ActivityAuthBinding
 
-import androidx.navigation.ui.setupActionBarWithNavController
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class AuthActivity : AppCompatActivity() {
@@ -42,8 +35,7 @@ class AuthActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.container_auth) as NavHostFragment
         navController = navHostFragment.navController
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-//        setupActionBarWithNavController(navController, appBarConfiguration)
+        AppBarConfiguration(navController.graph)
 
         viewModel.user.observe(
             this@AuthActivity

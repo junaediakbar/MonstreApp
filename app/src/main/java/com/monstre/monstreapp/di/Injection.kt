@@ -8,6 +8,8 @@ import com.monstre.monstreapp.data.AuthRepository
 import com.monstre.monstreapp.data.MonstreRepository
 import com.monstre.monstreapp.data.local.preference.SharedPreference
 import com.monstre.monstreapp.data.remote.api.ApiConfig
+import com.monstre.monstreapp.data.remote.api.ApiConfigSmartWatch
+import com.monstre.monstreapp.data.remote.api.ApiServiceSmartWatch
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
@@ -21,6 +23,7 @@ object Injection {
     fun provideMonstreeRepository(context: Context): MonstreRepository{
         val apiService = ApiConfig.getApiService()
         val pref = SharedPreference.getInstance(context.dataStore)
-        return MonstreRepository(pref, apiService)
+        val apiServiceSmartWatch = ApiConfigSmartWatch.getApiService()
+        return MonstreRepository(pref, apiService,apiServiceSmartWatch)
     }
 }

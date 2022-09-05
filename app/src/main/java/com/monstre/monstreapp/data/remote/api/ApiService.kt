@@ -40,6 +40,15 @@ interface ApiService {
         @Header("Authorization") token: String,
     ): TodaySaturationResponse
 
+    @FormUrlEncoded
+    @POST("saturation")
+    suspend fun postTodaySaturation(
+        @Header("Authorization") token: String,
+        @Field("bpm") name: String,
+        @Field("spo2") email: String,
+
+    ): PostTodaySaturationResponse
+
     @GET("saturation/get-full-week")
     suspend fun getSaturationFullWeek(
         @Header("Authorization") token: String,

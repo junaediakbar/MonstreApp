@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.monstre.monstreapp.data.local.preference.SharedPreference
 import com.monstre.monstreapp.data.remote.api.ApiService
+import com.monstre.monstreapp.data.remote.api.ApiServiceSmartWatch
 import com.monstre.monstreapp.data.remote.response.*
 import com.monstre.monstreapp.domain.model.User
 import kotlinx.coroutines.flow.Flow
@@ -12,7 +13,8 @@ import okhttp3.MultipartBody
 
 class MonstreRepository(
     private val pref: SharedPreference,
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val smartWatchApiService: ApiServiceSmartWatch
 ) {
 
     fun getProfile(token: String): LiveData<Result<UserResponse>> =  liveData {
@@ -24,6 +26,28 @@ class MonstreRepository(
             emit(Result.Success(response))
         } catch (e: Exception) {
             Log.d(MonstreRepository.TAG, "profile: ${e.message.toString()} ")
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun postSaturationToday(token: String,bpm: String,spo2: String) : LiveData<Result<PostTodaySaturationResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.postTodaySaturation(token,bpm,spo2)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            Log.d(MonstreRepository.TAG, "Today saturation: ${e.message.toString()} ")
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun getSmartWatchSaturation(): LiveData<Result<SmartWatchResponse>> =  liveData {
+        emit(Result.Loading)
+        try {
+            val response = smartWatchApiService.getSmartWatchData()
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            Log.d(MonstreRepository.TAG, "saturation: ${e.message.toString()} ")
             emit(Result.Error(e.message.toString()))
         }
     }
@@ -107,10 +131,11 @@ class MonstreRepository(
         private var instance: MonstreRepository? = null
         fun getInstance(
             pref: SharedPreference,
-            apiService: ApiService
+            apiService: ApiService,
+            apiServiceSmartWatch: ApiServiceSmartWatch
         ): MonstreRepository =
             instance ?: synchronized(this) {
-                instance ?: MonstreRepository(pref, apiService)
+                instance ?: MonstreRepository(pref, apiService,apiServiceSmartWatch)
             }.also { instance = it }
     }
 

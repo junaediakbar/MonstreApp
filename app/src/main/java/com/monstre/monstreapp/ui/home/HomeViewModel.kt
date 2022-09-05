@@ -19,6 +19,10 @@ class HomeViewModel(private val monstreeRepository: MonstreRepository): ViewMode
 
     fun getArticles(token: String) = monstreeRepository.getArticles("Bearer $token")
 
+    fun getSmartWatchData() = monstreeRepository.getSmartWatchSaturation()
+
+    fun postSaturationToday(token: String,bpm: String,spo2: String) = monstreeRepository.postSaturationToday("Bearer $token",bpm,spo2)
+
     private var _badges = MutableLiveData <String>()
     val badges: LiveData<String> = _badges
 

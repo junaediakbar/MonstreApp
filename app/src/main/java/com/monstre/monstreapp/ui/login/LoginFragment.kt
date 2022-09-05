@@ -14,12 +14,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.monstre.monstreapp.R
+import com.monstre.monstreapp.data.Result
 import com.monstre.monstreapp.data.local.preference.SharedPreference
 import com.monstre.monstreapp.data.remote.response.LoginResponse
 import com.monstre.monstreapp.databinding.FragmentLoginBinding
 import com.monstre.monstreapp.ui.ViewModelFactory
-import com.monstre.monstreapp.data.Result
-import com.monstre.monstreapp.ui.AuthActivity
 import com.monstre.monstreapp.ui.customview.EditTextWithValidation
 
 

@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.monstre.monstreapp.databinding.ItemNotificationBinding
-import com.monstre.monstreapp.databinding.ItemSuggestionBinding
 import com.monstre.monstreapp.domain.model.Notification
-import com.monstre.monstreapp.domain.model.Suggestion
 
 class NotificationAdapter(
     private val notificationList: ArrayList<Notification>,
